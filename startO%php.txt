@@ -1,0 +1,423 @@
+{\rtf1\ansi\ansicpg1252\cocoartf2709
+\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
+{\colortbl;\red255\green255\blue255;}
+{\*\expandedcolortbl;;}
+\paperw11900\paperh16840\margl1440\margr1440\vieww11520\viewh8400\viewkind0
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\f0\fs24 \cf0 //interface\
+package za;\
+\
+import java.util.List;\
+\
+public interface DOA<T> \{\
+    T get(Integer code);\
+    List<T> getAll();\
+    boolean add(T t);\
+    boolean update(T t);\
+    boolean delete(T t);\
+\}\
+\
+\
+//database\
+package za;\
+\
+import java.sql.Connection;\
+import java.sql.DriverManager;\
+import static java.sql.DriverManager.getConnection;\
+import java.sql.PreparedStatement;\
+import java.sql.ResultSet;\
+import java.sql.SQLException;\
+import java.util.ArrayList;\
+import java.util.List;\
+import za.Student;\
+\
+public class StudentDB implements DOA<Student> \{\
+    private Connection connection;\
+\
+public StudentDB(String dbURL, String username, String password) throws SQLException\{\
+connection=getConnection(dbURL, username, password);\
+    \}\
+\
+@Override\
+public Student get(Integer code) \{\
+    String sql = "SELECT StudentNumber, Name, Surname " +\
+                 "FROM StudentsTBL " +\
+                 "WHERE StudentNumber =?";\
+    \
+    try \{\
+        PreparedStatement ps = connection.prepareStatement(sql);\
+        ps.setInt(1, code);\
+        ResultSet rs = ps.executeQuery();\
+        \
+        if (rs.next()) \{\
+            Integer studNum = rs.getInt("StudentNumber");\
+            String name = rs.getString("Name");\
+            String surname = rs.getString("Surname");\
+            Student student = new Student(studNum, name, surname);\
+            rs.close();\
+            return student;\
+        \} else \{\
+            rs.close();\
+            return null;\
+        \}\
+    \} catch (SQLException ex) \{\
+        System.err.println(ex);\
+        return null;\
+    \}\
+\}\
+\
+@Override\
+public boolean add(Student t) \{\
+    String sql = "INSERT INTO StudentsTBL (StudentNumber, Name, Surname) " +\
+                 "VALUES (?, ?, ?)";\
+\
+    try \{\
+        PreparedStatement ps = connection.prepareStatement(sql);\
+        ps.setInt(1, t.getStudNum());\
+        ps.setString(2, t.getName());\
+        ps.setString(3, t.getSurname());\
+        ps.executeUpdate();\
+        return true;\
+    \} catch (SQLException ex) \{\
+        System.err.println(ex);\
+        return false;\
+    \}\
+\}\
+\
+@Override\
+public List<Student> getAll() \{\
+    String sql = "SELECT * FROM StudentsTBL " +\
+                 "ORDER BY StudentNumber ASC";\
+    List<Student> students = new ArrayList<>();\
+    \
+    try \{\
+        PreparedStatement ps = connection.prepareStatement(sql);\
+        ResultSet rs = ps.executeQuery();\
+        \
+        while (rs.next()) \{\
+            Integer studNum = rs.getInt("StudentNumber");\
+            String name = rs.getString("Name");\
+            String surname = rs.getString("Surname");\
+            Student student = new Student(studNum, name, surname);\
+            students.add(student);\
+        \}\
+        \
+        return students;\
+    \} catch (SQLException ex) \{\
+        System.err.println(ex);\
+        return null;\
+    \}\
+\}\
+\
+@Override\
+public boolean delete(Student t) \{\
+    String sql = "DELETE FROM StudentsTBL " +\
+                 "WHERE StudentNumber =?";\
+    \
+    try \{\
+        PreparedStatement ps = connection.prepareStatement(sql);\
+        ps.setInt(1, t.getStudNum());\
+        ps.executeUpdate();\
+        return true;\
+    \} catch (SQLException ex) \{\
+        System.err.println(ex);\
+        return false;\
+    \}\
+\}\
+\
+@Override\
+public boolean update(Student t) \{\
+    String sql = "UPDATE StudentsTBL SET " +\
+                 "Name = ?, " +\
+                 "Surname = ? " +\
+                 "WHERE StudentNumber =?";\
+    \
+    try \{\
+        PreparedStatement ps = connection.prepareStatement(sql);\
+        ps.setString(1, t.getName());\
+        ps.setString(2, t.getSurname());\
+        ps.setInt(3, t.getStudNum());\
+        ps.executeUpdate();\
+        return true;\
+    \} catch (SQLException ex) \{\
+        System.err.println(ex);\
+        return false;\
+    \}\
+\}\
+private Connection getConnection(String dbURL, String username, String password) throws SQLException \{\
+    Connection theConnection = DriverManager.getConnection(dbURL, username, password);\
+    return theConnection;\
+\} \
+\}\
+\
+//app\
+package doaapp;\
+\
+import za.Student;\
+import za.StudentDB;\
+import java.sql.SQLException;\
+import java.util.InputMismatchException;\
+import java.util.List;\
+import java.util.Scanner;\
+public class DOAAPP \{\
+\
+    /**\
+     * @param args the command line arguments\
+     */\
+    public static void main(String[] args) \{\
+             // Replace these with your actual database URL, username, and password\
+        String dbURL = "jdbc:derby://localhost:1527/StudentsDB";\
+        String username = "app";\
+        String password = "12345";\
+\
+       try (Scanner scanner = new Scanner(System.in)) \{\
+            StudentDB studentDB = new StudentDB(dbURL, username, password);\
+            System.out.println("Connected to the database successfully.");\
+\
+            int choice = 0;\
+            while (choice != 6) \{\
+                printMenu();\
+                try \{\
+                    System.out.print("Your choice: ");\
+                    choice = scanner.nextInt();\
+                    scanner.nextLine(); // Consume the newline character\
+\
+                    switch (choice) \{\
+                        case 1:\
+                            addStudent(studentDB, scanner);\
+                            break;\
+                        case 2:\
+                            deleteStudent(studentDB, scanner);\
+                            break;\
+                        case 3:\
+                            updateStudent(studentDB, scanner);\
+                            break;\
+                        case 4:\
+                            getStudent(studentDB, scanner);\
+                            break;\
+                        case 5:\
+                            getAllStudents(studentDB);\
+                            break;\
+                        case 6:\
+                            System.out.println("Exiting application. Goodbye!");\
+                            break;\
+                        default:\
+                            System.out.println("Invalid choice. Please try again.");\
+                    \}\
+                \} catch (InputMismatchException e) \{\
+                    System.out.println("Invalid input. Please enter a number.");\
+                    scanner.nextLine(); // Clear the invalid input from the scanner\
+                \}\
+            \}\
+        \} catch (SQLException e) \{\
+            System.err.println("Database connection failed: " + e.getMessage());\
+        \}\
+    \}\
+\
+    private static void printMenu() \{\
+        System.out.println("\\n--- Please select one of the following options: ---");\
+        System.out.println("1 - add student");\
+        System.out.println("2 - delete student");\
+        System.out.println("3 - update student");\
+        System.out.println("4 - get student");\
+        System.out.println("5 - get all students");\
+        System.out.println("6 - exit");\
+    \}\
+\
+    private static void addStudent(StudentDB studentDB, Scanner scanner) \{\
+        System.out.println("--- Add Student ---");\
+        System.out.print("Enter Student Number: ");\
+        int studNum = scanner.nextInt();\
+        scanner.nextLine();\
+        System.out.print("Enter Name: ");\
+        String name = scanner.nextLine();\
+        System.out.print("Enter Surname: ");\
+        String surname = scanner.nextLine();\
+\
+        Student newStudent = new Student(studNum, name, surname);\
+        if (studentDB.add(newStudent)) \{\
+            System.out.println("Student added successfully.");\
+        \} else \{\
+            System.out.println("Failed to add student. It might already exist.");\
+        \}\
+    \}\
+\
+    private static void deleteStudent(StudentDB studentDB, Scanner scanner) \{\
+        System.out.println("--- Delete Student ---");\
+        System.out.print("Enter Student Number to delete: ");\
+        int studNum = scanner.nextInt();\
+        scanner.nextLine();\
+\
+        Student studentToDelete = new Student(studNum, "", ""); // Name and surname are not needed for deletion\
+        if (studentDB.delete(studentToDelete)) \{\
+            System.out.println("Student deleted successfully.");\
+        \} else \{\
+            System.out.println("Failed to delete student. Student may not exist.");\
+        \}\
+    \}\
+\
+    private static void updateStudent(StudentDB studentDB, Scanner scanner) \{\
+        System.out.println("--- Update Student ---");\
+        System.out.print("Enter Student Number to update: ");\
+        int studNum = scanner.nextInt();\
+        scanner.nextLine();\
+        System.out.print("Enter new Name: ");\
+        String newName = scanner.nextLine();\
+        System.out.print("Enter new Surname: ");\
+        String newSurname = scanner.nextLine();\
+\
+        Student studentToUpdate = new Student(studNum, newName, newSurname);\
+        if (studentDB.update(studentToUpdate)) \{\
+            System.out.println("Student updated successfully.");\
+        \} else \{\
+            System.out.println("Failed to update student. Student may not exist.");\
+        \}\
+    \}\
+\
+    private static void getStudent(StudentDB studentDB, Scanner scanner) \{\
+        System.out.println("--- Get Student ---");\
+        System.out.print("Enter Student Number to retrieve: ");\
+        int studNum = scanner.nextInt();\
+        scanner.nextLine();\
+\
+        Student foundStudent = studentDB.get(studNum);\
+        if (foundStudent != null) \{\
+            System.out.println("Found student: " + foundStudent);\
+        \} else \{\
+            System.out.println("Student with number " + studNum + " not found.");\
+        \}\
+    \}\
+\
+    private static void getAllStudents(StudentDB studentDB) \{\
+        System.out.println("--- All Students ---");\
+        List<Student> allStudents = studentDB.getAll();\
+        if (allStudents != null && !allStudents.isEmpty()) \{\
+            for (Student student : allStudents) \{\
+                System.out.println(student);\
+            \}\
+        \} else \{\
+            System.out.println("No students found in the database or failed to retrieve.");\
+        \}\
+    \}\
+    \
+\}\
+\
+\
+\
+\
+import java.sql.*; \
+import java.util.Scanner;\
+\
+public class MovieLibraryApp \{ \
+    \
+public static void main(String[] args) throws SQLException \
+\{ \
+    \
+String dbURL = "jdbc:derby://localhost:1527/MovieLibrary"; //Modify according to your system\
+\
+Connection conn = null; \
+Statement stmt = null; \
+ResultSet rs = null;\
+\
+    // Initialize Scanner for user input\
+    Scanner scanner = new Scanner(System.in);\
+\
+    try \{\
+\
+        // Connect to the database (1)\
+        conn = DriverManager.getConnection(dbURL);\
+        \
+        // Create a Statement object (1)\
+        stmt = conn.createStatement();\
+        \
+        // Execute the SELECT * FROM MOVIES query (1)\
+        rs = stmt.executeQuery("SELECT * FROM MOVIES");\
+        \
+            // Display menu\
+            System.out.println("Menu:");\
+            System.out.println("1. Check Stock by Director");\
+            System.out.println("2. Calculate Average Rating");\
+            System.out.println("3. Exit");\
+            System.out.print("Choose an option: ");\
+            \
+            int choice = scanner.nextInt();\
+            scanner.nextLine(); // Consume newline\
+\
+            switch (choice) \{\
+                case 1:\
+                    // Call the checkStockByDirector function\
+                    checkStockByDirector(rs, scanner);\
+                    break;\
+                case 2:\
+                    // Call the calculateAverageRating function\
+                    calculateAverageRating(rs);\
+                    break;\
+                case 3:\
+                    System.out.println("Exiting...");\
+                    break;\
+                default:\
+                    System.out.println("Invalid option. Please choose a valid option.");\
+                    break;\
+            \}\
+            \
+    \} catch (Exception ex) \{\
+        ex.printStackTrace();\
+    \} finally \{\
+        // Close resources (1) \
+        conn.close();\
+        stmt.close();\
+        rs.close();\
+        \
+    \}\
+    scanner.close();\
+\}\
+\
+// Implement the checkStockByDirector function here (8)\
+public static void checkStockByDirector(ResultSet rs, Scanner scanner) \{\
+    //prompt the user\
+    System.out.println("Enter director name: ");\
+    String dn = scanner.nextLine();\
+    int totNumber = 0;\
+    try\{\
+        \
+        //rs.next() - enables you to access the query since it's locked when printed.\
+        while(rs.next())\{\
+            //3- position \
+            String dnFromDB = rs.getString(3);\
+            \
+        //Compare the name the user entered and the one retrieved from from the database\
+        if(dn.equalsIgnoreCase(dnFromDB))\{\
+            int stock = rs.getInt("STOCK");\
+            totNumber = totNumber + stock;\
+        \}\
+\
+        \}\
+        System.out.print("The total number of available movies by " + dn + "is" + totNumber);\
+    \}\
+    \
+    catch(SQLException x)\{\}\
+\}\
+\
+// Implement the calculateAverageRating function here (5)\
+public static void calculateAverageRating(ResultSet rs) \{\
+    double tot = 0.0;\
+    int totRecords = 0;\
+    \
+    try\{\
+        while (rs.next())\{\
+            double rating = rs.getDouble("Rating");\
+            tot = tot + rating;\
+            totRecords++;\
+        \}\
+        \
+        double avg = tot/ totRecords;\
+    \}\
+    \
+    \
+    catch(SQLException x)\{\}\
+    \
+    \
+\}\
+\
+\} }

@@ -1,0 +1,214 @@
+{\rtf1\ansi\ansicpg1252\cocoartf2709
+\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
+{\colortbl;\red255\green255\blue255;}
+{\*\expandedcolortbl;;}
+\paperw11900\paperh16840\margl1440\margr1440\vieww11520\viewh8400\viewkind0
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\f0\fs24 \cf0 package SonkeLVH;\
+\
+public class SonkeLVH \{\
+    \
+    static boolean isProjectBuilt = false;\
+    static boolean hasPresented = false;\
+    \
+    public static void main(String[] args) \{\
+        //Instantiate the threads \
+        Projectbuilder p = new Projectbuilder();\
+        p.setPriority(Thread.MAX_PRIORITY);\
+        \
+        DemoRecorder d = new DemoRecorder();\
+        d.setPriority(Thread.NORM_PRIORITY);\
+        \
+        ScorePublisher s = new ScorePublisher();\
+        s.setPriority(Thread.MIN_PRIORITY);\
+        \
+        //Execute the threads\
+        p.start();\
+        d.start();\
+        s.start();\
+        \
+	//\
+        System.out.println("Hackethon started");\
+    \}\
+  \
+\}\
+//-------------------------------------------------------------------------------------------------\
+//Threads created\
+    class Projectbuilder extends Thread\{  \
+	\
+	//Thread 1 Pattern: Lock, Print message, update var and notify.\
+\
+        @Override\
+        public void run() \{\
+          \
+            //lock\
+            synchronized(SonkeLVH.class)\{\
+		//Print message\
+                System.out.println("Idea discusssed, now starting development");\
+                System.out.println("Prototype developed and deployed");\
+\
+		//Update Variable\
+                SonkeLVH.isProjectBuilt = true;\
+		\
+		//Notify\
+                notifyAll();\
+            \}\
+        \}\
+    \}\
+    //------------------------------------------------------------------------------------------\
+    class DemoRecorder extends Thread\{\
+     //Thread 2 Pattern:Lock, waits, Print message, update var and notify.\
+    	\
+\
+	@Override\
+        public void run() \{ \
+            //Lock\
+            synchronized(SonkeLVH.class)\{\
+                //Wait\
+                while(SonkeLVH.isProjectBuilt == false)\{\
+                    try\{ wait();\} catch(InterruptedException x)\{\}\
+\
+                \}\
+                //Print message\
+                System.out.println("Prototype presentation begins");\
+\
+		//Update Var\
+                SonkeLVH.hasPresented = true;\
+\
+		//Notify\
+                notify();\
+\
+                System.out.println("Present complete");\
+            \}\
+        \}\
+    \}\
+    //---------------------------------------------------------------------------------------------------\
+    class ScorePublisher extends Thread\{\
+	//T3 - Pattern:Lock, waits, Print message, update var and notify.\
+        @Override\
+        public void run() \{\
+            synchronized(SonkeLVH.class)\{\
+                while(SonkeLVH.hasPresented = false)\{\
+                    try\{wait();\} \
+                    catch(InterruptedException x)\{\}\
+                \}    \
+                \
+                System.out.println("Judging presentation...");\
+                \
+                try\{\
+                    sleep(3000);\
+                    System.out.println("Now calculationg score");\
+                    sleep(2000);\
+                    System.out.println();\
+                \}\
+                \
+                catch(InterruptedException x)\{\}\
+            \}\
+        \}\
+       \
+       \}\
+    \}\
+\
+class DataFlowSystem \{\
+\
+    // Shared resources\
+    private static boolean isDataCollected = false;\
+    private static boolean isDataProcessed = false;\
+\
+\
+    public static void main(String[] args) \{\
+\
+        // Creating and starting threads\
+        Thread dataCollectionThread = new DataCollectionThread();\
+        Thread dataProcessingThread = new DataProcessingThread();\
+        Thread dataStorageThread = new DataStorageThread();\
+\
+        // Setting thread priorities (optional, but in provided code)\
+        dataCollectionThread.setPriority(Thread.MAX_PRIORITY);\
+        dataProcessingThread.setPriority(Thread.NORM_PRIORITY);\
+        dataStorageThread.setPriority(Thread.MIN_PRIORITY);\
+\
+        dataCollectionThread.start();\
+        dataProcessingThread.start();\
+        dataStorageThread.start();\
+\
+    \}\
+\
+    // Provided DataCollectionThread\
+    static class DataCollectionThread extends Thread \{\
+        @Override\
+        public void run() \{\
+            synchronized (DataFlowSystem.class) \{\
+                System.out.println("Data collection started.");\
+                try \{\
+                    Thread.sleep(1000); // Simulate time taken for data collection\
+                \} catch (InterruptedException e) \{\
+                    e.printStackTrace();\
+                \}\
+                isDataCollected = true;\
+                System.out.println("Data collection completed.");\
+                DataFlowSystem.class.notifyAll(); // Notify waiting threads\
+            \}\
+        \}\
+    \}\
+\
+    // REQUIRED IMPLEMENTATION: DataProcessingThread (Question 1)\
+    static class DataProcessingThread extends Thread \{\
+        @Override\
+        public void run() \{\
+            // Synchronize on the DataFlowSystem class lock, which is the monitor \
+            // used by the other threads (Collection and Storage).\
+            synchronized (DataFlowSystem.class) \{\
+                // 1. Waits for data collection to complete before starting processing.\
+                while (!isDataCollected) \{\
+                    try \{\
+                        System.out.println("Waiting for data collection...");\
+                        DataFlowSystem.class.wait();\
+                    \} catch (InterruptedException e) \{\
+                        Thread.currentThread().interrupt();\
+                        return; // Exit or re-wait\
+                    \}\
+                \}\
+                \
+                System.out.println("Data processing started.");\
+                \
+                // 2. Processes the data (simulate with Thread.sleep()).\
+                try \{\
+                    Thread.sleep(1000); // Simulate time taken for data processing\
+                \} catch (InterruptedException e) \{\
+                    e.printStackTrace();\
+                \}\
+\
+                // 3. Sets the isDataProcessed flag to true after processing.\
+                isDataProcessed = true;\
+                System.out.println("Data processing completed.");\
+                \
+                // 4. Notifies any threads waiting for data to be processed (DataStorageThread).\
+                DataFlowSystem.class.notifyAll();\
+            \}\
+        \}\
+    \}\
+\
+    // Provided DataStorageThread\
+    static class DataStorageThread extends Thread \{\
+        @Override\
+        public void run() \{\
+            synchronized (DataFlowSystem.class) \{\
+                try \{\
+                    // Wait for data to be processed\
+                    while (!isDataProcessed) \{ \
+                        System.out.println("Waiting for data processing...");\
+                        DataFlowSystem.class.wait(); \
+                    \}\
+                    \
+                    System.out.println("Data storage started.");\
+                    Thread.sleep(1000); // Simulate time taken for data storage\
+                    System.out.println("Data storage completed.");\
+                \} catch (InterruptedException e) \{\
+                    e.printStackTrace();\
+                \}\
+            \}\
+        \}\
+    \}\
+\}}
