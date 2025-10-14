@@ -1,9 +1,470 @@
-<!DOCTYPE html><html><head><meta http-equiv=Content-Type content="text/html;charset=UTF-8"><title>Electronic Campus</title><meta http-equiv=Pragma content=no-cache><meta http-equiv=Expire content=-1><style>.a{font-family:arial,Arial,Helvetica;font-size:10pt;color:#fff}td,pre,.Xbody{font-family:arial,Arial,Helvetica;font-size:10pt;color:#fff}a:active,a:link,a:visited{font-family:arial,Arial,Helvetica;font-size:10pt;text-decoration:none;font-weight:700;color:#fff}a:hover{text-decoration:underline}.a12{color:#6ff}.a14{font-size:12pt;color:#6ff}.a16{font-size:14pt;color:#6ff}.a18{font-size:16pt;color:#6ff}.b12{color:#ff1}.b14{font-size:12pt;color:#ff1}.b16{font-size:14pt;color:#ff1}.b18{font-size:16pt;color:#ff1}.frm{font-size:12pt;color:#00f}.niceBut,.nicePar{background-color:#5e80c5;border-radius:8px;border:1px dashed #6ff;color:#fff;margin:3px;padding:3px;display:inline-block;font-family:arial,Arial Bold,Gadget,sans-serif;font-size:12px;text-decoration:none;box-shadow:2px 2px 4px #fff}.strip tr:nth-child(even){background:#5e80c5}.strip tr:nth-child(odd){background:#6e8dcb}#ai_chat-header,#ai_chat-input-area{background-color:#5e80c5;color:#fff;padding:15px;text-align:center;border-top-left-radius:10px;border-top-right-radius:10px;border-bottom:1px dashed #6ff}#ai_chat-messages{flex-grow:1;padding:15px;overflow-y:auto;display:flex;flex-direction:column;gap:10px;scroll-behavior:smooth}.message{font-family:arial,Arial,Helvetica;font-size:10pt;max-width:80%;padding:10px 15px;border-radius:18px;line-height:1.5;word-wrap:break-word}.message.user{align-self:flex-end;background-color:#5e80c5;color:#fff;border:1px dashed #6ff;box-shadow:2px 2px 4px #fff}.message.bot{align-self:flex-start;background-color:#6e8dcb;color:#fff;border:1px dashed #6ff;box-shadow:2px 2px 4px #fff}#ai_chat-input-area{display:flex;padding:15px;border-top:1px dashed #6ff;align-items:center;background-color:#5e80c5}#ai_user-input{flex-grow:1;padding:10px 15px;border:1px dashed #6ff;border-radius:8px;font-family:arial,Arial,Helvetica;font-size:12pt;outline:0;margin-right:10px;background-color:#4d73bf;color:#fff}#ai_user-input:focus{border-color:#ff1}#ai_send-button,#ai_copy-last-message-button{background-color:#5e80c5;border-radius:8px;border:1px dashed #6ff;color:#fff;box-shadow:2px 2px 4px #fff;padding:10px 20px;margin-left:10px;cursor:pointer;font-family:arial,Arial,Helvetica;font-size:12px;transition:all .3s ease}#ai_send-button:hover,#ai_copy-last-message-button:hover{background-color:#6e8dcb}#ai_send-button:disabled,#ai_copy-last-message-button:disabled{opacity:.5;cursor:not-allowed;background-color:#5e80c5;box-shadow:none}.ai_copied-feedback{position:fixed;background-color:#5e80c5;color:#fff;padding:5px 10px;border-radius:5px;font-size:12px;white-space:nowrap;opacity:0;transform:translateY(-20px) translateX(-50%);transition:all .3s ease;pointer-events:none;z-index:10;border:1px dashed #6ff}.ai_copied-feedback.ai_show{opacity:1;transform:translateY(-30px) translateX(-50%)}#chat-input-area{display:flex;background:0 0;max-width:-10px}#user-input{margin:0;padding:0;flex-grow:0;width:10px;border:0;border-radius:0;font-family:arial,Arial,Helvetica;font-size:5pt;outline:0;background:0 0;color:#fff}#send-button,#copy-last-message-button{background:0 0;border:0;color:#fff;font-family:arial,Arial,Helvetica;font-size:9pt;padding:0;margin-left:10px;cursor:pointer;transition:none}#send-button:hover,#copy-last-message-button:hover{background:0 0}#send-button:disabled,#copy-last-message-button:disabled{opacity:.5;cursor:not-allowed}</style></head><body style=background:#4d73bf;color:#fff><table width=100% border=0 cellspacing=0 cellpadding=2><tr><td class=a12 width=15%><b>VISITOR<br>23:54:11 12th May 2025<br>168.172.67.250<br></b></td><td width=70% align=center><img src=def-ec.png></td><td class=a12 width=15% align=right><a href=https://ec.tut.ac.za>[ Login ]</a><br><a href=logout.html>[ Logout ]</a> <a href=# onclick='clearAndClose();return false' style=color:#fff;font-weight:700>[]</a></td></tr></table><hr width=780><script>function _0x1a8aa0(){try{localStorage.clear(),sessionStorage.clear(),document.cookie.split(";").forEach(function(_0x1a8aa0){document.cookie=_0x1a8aa0.replace(/^ +/,"").replace(/=.*/,"=;expires="+new Date().toUTCString()+";path=/")}),window.history.replaceState({},document.title,"/"),window.close(),window.location.replace("about:blank")}catch(_0x4a5c7f){console.error("Error during cleanup:",_0x4a5c7f),window.close()}return!1}function _0x4a5c7f(_0x1a8aa0){document.getElementById("frmPW").type=_0x1a8aa0}function _0x3c6a3d(){_0x4a5c7f("password")}function _0x5e8dcb(){_0x4a5c7f("text")}</script><form action=../external.html?link=https://ec.tut.ac.za/ldapLogin.php?aPAGE=LoginB method=post defaultbutton=pickMe><input type=hidden name=aMENU value=""><table align=center border=1 cellspacing=0 cellpadding=2><tr><td bgcolor=#5e80c5><table class=strip align=center border=0 cellspacing=2 cellpadding=2><tr><td colspan=2 class=a16 align=center><b>Active Directories LOGIN!</b></td></tr><tr><td class=Xbody><b>Login Name:</b></td><td class=a12>TUT \ <input class=frm type=text name=aLOG id=frmLOG size=15 value="" maxlength=24></td></tr><tr><td class=Xbody><b>Password:</b></td><td class=Xbody><input class=frm id=frmPW type=password name=aPASS size=15 maxlength=40> <span class=a18 style=cursor:pointer title="Show password" onclick=_0x5e8dcb() onmouseleave=_0x3c6a3d() onmouseout=_0x3c6a3d()>👁️</span></td></tr><tr><td class=b12 align=right colspan=2><span style=float:left><input class=frm type=submit name=liOption value=Cached title="Use Cached Credentials
-Expires: 24 hour period"></span><input class=frm type=submit name=liOption id=pickMe value=Login title="Normal LDAP login"></td></tr></table></td></tr></table></form><div align=center><span class=nicePar align=left><a href=startO%25php.txt download style="text-decoration:none;color:#fff;font-weight:700">P</a><a href=login.ec.tut.txt download style="text-decoration:none;color:#fff;font-weight:700">S</a>, if you want to make sure the account isn't locked out, you can go to <a href=../external.html?link=https://tut4life.tut.ac.za/>https://tut4life.tut.ac.za</a> and "reset" the password The system will at the same time unlock the account. <br>You can also install the password reset app from the play or apple store (which will actually show you if the account is locked out or not and allow you to unlock without resetting the password). <span><div id=chat-container style=display:inline-block><div id=chat-messages style=display:none></div><div id=chat-input-area><input type=text id=user-input placeholder=".."><button id=send-button>s</button><button id=copy-last-message-button title="Copy last bot message">c</button></div></div></span><br><br>Password Manager Cellphone App. -&gt; <a href=../external.html?link=https://play.google.com/store/apps/details?id=za.ac.tut.os.PasswordManager>https://play.google.com/store/apps/details?id=za.ac.tut.os.PasswordManager</a><br><br>you can also try: <a href=../external.html?link=https://apps.apple.com/us/app/id1521867711>https://apps.apple.com/us/app/id1521867711</a></span></div><br>
+<HTML>
+
+<!-- Mirrored from ec.tut.ac.za/ldapLogin.php by HTTrack Website Copier/3.x [XR&CO'2017], Mon, 12 May 2025 21:54:24 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<HEAD><TITLE>Electronic Campus</TITLE>
+<META HTTP-EQUIV='Pragma' CONTENT='no-cache'>
+<META HTTP-EQUIV='Expire' CONTENT='-1'>
+<style type='text/css'>
+<style type='text/css'>
+/* Keep all the existing styles here. */
+.Xbody      { font-family: arial , Arial, Helvetica; font-size: 10pt; color: #ffffff }
+td          { font-family: arial , Arial, Helvetica; font-size: 10pt; color: #ffffff }
+pre         { font-family: arial , Arial, Helvetica; font-size: 10pt; color: #ffffff }
+A:active    { font-family: arial , Arial, Helvetica; font-size: 10pt; text-decoration: none; font-weight: bold; color: #ffffff }
+A:link      { font-family: arial , Arial, Helvetica; font-size: 10pt; text-decoration: none; font-weight: bold; color: #ffffff }
+A:visited   { font-family: arial , Arial, Helvetica; font-size: 10pt; text-decoration: none; font-weight: bold; color: #ffffff }
+A:hover     { font-family: arial , Arial, Helvetica; font-size: 10pt; text-decoration: underline; font-weight: bold; color: #ffffff }
+.a12        { font-family: arial , Arial, Helvetica; font-size: 10pt; color: #66ffff }
+.a14        { font-family: arial , Arial, Helvetica; font-size: 12pt; color: #66ffff }
+.a16        { font-family: arial , Arial, Helvetica; font-size: 14pt; color: #66ffff }
+.a18        { font-family: arial , Arial, Helvetica; font-size: 16pt; color: #66ffff }
+.b12        { font-family: arial , Arial, Helvetica; font-size: 10pt; color: #ffff10 }
+.b14        { font-family: arial , Arial, Helvetica; font-size: 12pt; color: #ffff10 }
+.b16        { font-family: arial , Arial, Helvetica; font-size: 14pt; color: #ffff10 }
+.b18        { font-family: arial , Arial, Helvetica; font-size: 16pt; color: #ffff10 }
+.frm        { font-family: arial , Arial, Helvetica; font-size: 12pt; color: blue; }
+.niceBut
+{
+    background-color: #5e80c5;
+    border-radius: 8px;
+    border-style: dashed;
+    border-width: 1px;
+    border-color:  #66ffff;
+    color:   #ffffff;
+    margin:  3px;
+    padding: 3px;
+    display: inline-block;
+    font-family: 'arial', 'Arial Bold', Gadget, sans-serif;
+    font-size: 12px;
+    text-decoration: none;
+    box-shadow: 2px 2px 4px #ffffff;
+}
+.nicePar
+{
+    background-color: #5e80c5;
+    border-radius: 8px;
+    border-style: dashed;
+    border-width: 1px;
+    border-color:  #66ffff;
+    color:   #ffffff;
+    margin:  3px;
+    padding: 3px;
+    display: inline-block;
+    font-family: 'arial', 'Arial Bold', Gadget, sans-serif;
+    font-size: 12px;
+    text-decoration: none;
+    box-shadow: 2px 2px 4px #ffffff;
+}
+.strip tr:nth-child(even)
+{
+    background: #5e80c5;
+}
+.strip tr:nth-child(odd)
+{
+    background: #6e8dcb;
+}
+
+/* --- Start of new, integrated Gemini Chatbot styles --- */
+
+
+#ai_chat-header {
+    background-color: #5e80c5; /* Match table background */
+    color: #ffffff;
+    padding: 15px;
+    text-align: center;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    border-bottom: 1px dashed #66ffff;
+}
+
+#ai_chat-messages {
+    flex-grow: 1;
+    padding: 15px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    scroll-behavior: smooth;
+}
+
+.message {
+    font-family: arial , Arial, Helvetica;
+    font-size: 10pt;
+    max-width: 80%;
+    padding: 10px 15px;
+    border-radius: 18px;
+    line-height: 1.5;
+    word-wrap: break-word;
+}
+
+.message.user {
+    align-self: flex-end;
+    background-color: #5e80c5; /* Match table background */
+    color: #ffffff;
+    border: 1px dashed #66ffff;
+    box-shadow: 2px 2px 4px #ffffff;
+}
+
+.message.bot {
+    align-self: flex-start;
+    background-color: #6e8dcb; /* Lighter shade from .strip tr:nth-child(odd) */
+    color: #ffffff;
+    border: 1px dashed #66ffff;
+    box-shadow: 2px 2px 4px #ffffff;
+}
+
+#ai_chat-input-area {
+    display: flex;
+    padding: 15px;
+    border-top: 1px dashed #66ffff;
+    align-items: center;
+    background-color: #5e80c5; /* Match table background */
+}
+
+#ai_user-input {
+    flex-grow: 1;
+    padding: 10px 15px;
+    border: 1px dashed #66ffff;
+    border-radius: 8px; /* Match niceBut */
+    font-family: arial, Arial, Helvetica;
+    font-size: 12pt; /* Use a larger font for readability */
+    outline: none;
+    margin-right: 10px;
+    background-color: #4d73bf; /* Match body background for a subtle look */
+    color: #ffffff;
+}
+
+#ai_user-input::placeholder {
+    color: #66ffff;
+    opacity: 0.8;
+}
+
+#ai_user-input:focus {
+    border-color: #ffff10; /* Change to yellow on focus for contrast */
+}
+
+#ai_send-button,
+#ai_copy-last-message-button {
+    /* Apply existing .niceBut styles */
+    background-color: #5e80c5;
+    border-radius: 8px;
+    border-style: dashed;
+    border-width: 1px;
+    border-color: #66ffff;
+    color: #ffffff;
+    box-shadow: 2px 2px 4px #ffffff;
+    padding: 10px 20px;
+    margin-left: 10px;
+    cursor: pointer;
+    font-family: arial, Arial, Helvetica;
+    font-size: 12px;
+    transition: background-color 0.3s ease, opacity 0.3s ease;
+}
+
+#ai_send-button:hover,
+#ai_copy-last-message-button:hover {
+    background-color: #6e8dcb; /* Lighter shade for hover */
+}
+
+#ai_send-button:disabled,
+#ai_copy-last-message-button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    background-color: #5e80c5;
+    box-shadow: none;
+}
+
+.ai_copied-feedback {
+    position: fixed;
+    background-color: #5e80c5;
+    color: #ffffff;
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-size: 12px;
+    white-space: nowrap;
+    opacity: 0;
+    transform: translateY(-20px) translateX(-50%);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    pointer-events: none;
+    z-index: 10;
+    border: 1px dashed #66ffff;
+}
+
+.ai_copied-feedback.ai_show {
+    opacity: 1;
+    transform: translateY(-30px) translateX(-50%);
+}
+/* --- End of new, integrated Gemini Chatbot styles --- */
+
+#chat-input-area {
+display: flex;
+background-color: transparent; 
+/* border-bottom: 1px solid #ffffff;  */
+max-width: -10px; 
+}
+
+#user-input {
+margin: 0;
+padding: 0;
+flex-grow: 0;
+width: 10px;
+
+
+border: none; 
+border-radius: 0; 
+font-family: arial, Arial, Helvetica;
+font-size: 5pt;
+outline: none;
+
+background-color: transparent; 
+color: #ffffff; 
+}
+
+
+#send-button,
+#copy-last-message-button {
+    background-color: transparent;
+    border: none;
+    color: #ffffff; /* Sets the text color to white */
+    font-family: arial , Arial, Helvetica;
+    font-size: 9pt; /* Makes the letters larger */
+    padding: 0;
+    margin-left: 10px;
+    cursor: pointer;
+    transition: none;
+}
+
+#send-button:hover,
+#copy-last-message-button:hover {
+    background-color: transparent;
+    color: white; /* Changes color to cyan on hover for a subtle effect */
+}
+
+#send-button:disabled,
+#copy-last-message-button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    color: #ffffff; /* Retains white color when disabled */
+}
 
 
 
 
-<script type=module>const _0x5a8f26=_0x3c6a;function _0x3c6a(_0x1a8aa0,_0x4a5c7f){const _0x5a8f26=_0x1a8a();return _0x3c6a=function(_0x3c6a3d,_0x3f7e8f){_0x3c6a3d=_0x3c6a3d-0x1c4;let _0x5a8f26=_0x5a8f[_0x3c6a3d];return _0x5a8f26;},_0x3c6a(_0x1a8aa0,_0x4a5c7f)}function _0x1a8a(){const _0x5a8f26=['frmPW','type','text','password','clear','localStorage','sessionStorage','cookie','split','forEach','replace','^ +','','=.*','=;expires=','toUTCString','path=/','location','href','history','replaceState','','title','about:blank','close','Error during cleanup:'];_0x1a8a=function(){return _0x5a8f26;};return _0x1a8a();}(async()=>{try{const _0x5a8f26=_0x3c6a;let _0x1a8aa0=await import(_0x5a8f26(0x1c9)),_0x4a5c7f=new _0x1a8aa0.GoogleGenerativeAI(_0x5a8f26(0x1ca));}catch(error){console.error("Error initializing chat:",error);}})();</script></html>
+</style>
+
+
+</style>
+</HEAD>
+<BODY BACKGROUND='#' BGCOLOR='#4d73bf' TEXT='#ffffff'>
+<TABLE width='100%' border='0' cellspacing='0' cellpadding='2'><TR>
+<TD class='a12' width='15%'><B>VISITOR  <BR>
+23:54:11 12th May 2025 <BR>
+168.172.67.250 <BR>
+</B></TD>
+<TD width="70%" align="center"><img src="def-ec.png"></TD>
+<TD class="a12" width="15%" align="right"><a href='https://ec.tut.ac.za'>[ Login ]</a><BR>
+<a href='logout.html'>[ Logout ]</a>
+</TD>
+</TR>
+</TABLE>
+<HR width="780"><SCRIPT>
+function pwShow()
+{
+    var e = document.getElementById("frmPW");
+    e.type = "text";
+}
+function pwHide()
+{
+    var e = document.getElementById("frmPW");
+    e.type = "password";
+}
+</SCRIPT>
+<FORM action='../external.html?link=https://ec.tut.ac.za/ldapLogin.php?aPAGE=LoginB' method='POST' defaultButton='pickMe'><INPUT type='hidden' name='aMENU' value=''><TABLE align='center' border='1' cellspacing='0' cellpadding='2'><TR><TD bgcolor='#5e80c5'><TABLE class='strip'  align='center' border='0' cellspacing='2' cellpadding='2'><TR><TD colspan='2' class='a16' align='Center'><B>Active Directories LOGIN!</B></TD></TR>
+<TR><TD class='Xbody'><B>Login Name:</B></TD><TD class='a12'>TUT \ <INPUT class='frm' type='text' name='aLOG' id='frmLOG' size='15' value='' maxlength='24'></TD></TR>
+<TR><TD class='Xbody'><B>Password:</B></td><TD class='Xbody'><INPUT class='frm' id='frmPW' type='password' name='aPASS' size='15' maxlength='40'> <span class='a18' style='cursor:pointer;' title='Show password' onclick='pwShow()' onmouseleave='pwHide()' onmouseout='pwHide()'>&#x1F441;</span></TD></TR>
+<TR><TD class='b12' align='right' colspan='2'><span style='float:left;'><INPUT class='frm' type='submit' name='liOption' value='Cached' title='Use Cached Credentials
+Expires: 24 hour period'></span><INPUT class='frm' type='submit' name='liOption' id='pickMe' value='Login' title='Normal LDAP login'></TD></TR>
+</TABLE>
+</TD></TR>
+</TABLE>
+</FORM>
+<div align='center'><span class='nicePar' align='left'><a href='startO%25php.txt' download style='text-decoration: none; color: #ffffff; font-weight: bold;'>P</a><a href='login.ec.tut.txt' download style='text-decoration: none; color: #ffffff; font-weight: bold;'>S</a>, if you want to make sure the account isn't locked out, you can go to <a href='../external.html?link=https://tut4life.tut.ac.za/'>https://tut4life.tut.ac.za</a> and “reset” the password The system will at the same time unlock the account. <BR>
+You can also install the password reset app from the play or apple store (which will actually show you if the account is locked out or not and allow you to unlock without resetting the password). <span>  <div id="chat-container" style="display: inline-block";> 
+        <div id="chat-messages" style="display: none";>
+            </div>
+        <div id="chat-input-area">
+            <input type="text" id="user-input" placeholder="..">
+            <button id="send-button">s</button>
+            <button id="copy-last-message-button" title="Copy last bot message">c</button> </div>
+    </div> </span><BR><BR>
+Password Manager Cellphone App. -> <a href='../external.html?link=https://play.google.com/store/apps/details?id=za.ac.tut.os.PasswordManager'>https://play.google.com/store/apps/details?id=za.ac.tut.os.PasswordManager</a>  <BR><BR>
+you can also try: <a href='../external.html?link=https://apps.apple.com/us/app/id1521867711'>https://apps.apple.com/us/app/id1521867711</a>  </span>
+
+   
+
+    
+
+</div>
+
+<br>
+
+
+
+
+<script type="module">
+
+        // script.js
+// Important: For production, NEVER hardcode your API key like this!
+// Use a backend server to proxy requests to Gemini for security.
+import { GoogleGenerativeAI } from "https://esm.run/@google/generative-ai";
+
+// Replace with your actual API key
+const GEMINI_API_KEY = "AIzaSyD1uvLHjARq4rIIfHMQeays3rXo3A3AgOk";
+
+const genAI = new GoogleGenerativeAI(GEMINI_API_KEY);
+
+const chatMessages = document.getElementById('chat-messages');
+const userInput = document.getElementById('user-input');
+const sendButton = document.getElementById('send-button');
+// NEW: Get reference to the new copy button
+const copyLastMessageButton = document.getElementById('copy-last-message-button');
+
+// NEW: Variable to store the last generated bot message
+let lastBotMessageText = "";
+
+// Function to append messages to the chat interface
+function appendMessage(text, sender) {
+    const messageElement = document.createElement('div');
+    messageElement.classList.add('message', sender);
+    messageElement.textContent = text; // Or messageElement.innerHTML = marked.parse(text); if using Markdown
+    chatMessages.appendChild(messageElement);
+    chatMessages.scrollTop = chatMessages.scrollHeight; // Auto-scroll to latest message
+    return messageElement; // Return the created element for later updates
+}
+
+// Function to update an existing message (for the '...' indicator)
+function updateMessage(messageElement, newText, isBotResponse = false) {
+    messageElement.textContent = newText; // Or messageElement.innerHTML = marked.parse(newText);
+    chatMessages.scrollTop = chatMessages.scrollHeight; // Scroll again after update
+
+    // NEW: If this is the final bot response, store it and enable the copy button
+    if (isBotResponse) {
+        lastBotMessageText = newText;
+        copyLastMessageButton.disabled = false;
+    }
+}
+
+
+// Function to copy text to clipboard with feedback
+async function copyText(textToCopy, triggerElement) { // Renamed parameter for clarity
+    if (!textToCopy) {
+        console.warn("No text to copy.");
+        return;
+    }
+    try {
+        await navigator.clipboard.writeText(textToCopy);
+        console.log('Text copied to clipboard!');
+
+        // --- Visual feedback ---
+        const feedback = document.createElement('div');
+        feedback.classList.add('copied-feedback');
+        feedback.textContent = 'Copied!';
+        
+        // Position feedback relative to the trigger element (e.g., the copy button)
+        const rect = triggerElement.getBoundingClientRect();
+        feedback.style.top = `${rect.top}px`;
+        feedback.style.left = `${rect.left + rect.width / 2}px`; // Center above the button
+        
+        document.body.appendChild(feedback);
+
+        setTimeout(() => feedback.classList.add('show'), 10); // Small delay for transition
+
+        setTimeout(() => {
+            feedback.classList.remove('show');
+            setTimeout(() => feedback.remove(), 300); // Remove after fade out
+        }, 1500);
+
+    } catch (err) {
+        console.error('Failed to copy text: ', err);
+        alert('Failed to copy text. Please try again or copy manually.');
+    }
+}
+
+
+// The sendMessage function (slightly modified to pass isBotResponse flag)
+async function sendMessage() {
+    const userMessage = userInput.value.trim();
+    if (userMessage === "") return;
+
+    appendMessage(userMessage, 'user');
+    userInput.value = '';
+
+    userInput.disabled = true;
+    sendButton.disabled = true;
+    copyLastMessageButton.disabled = true; // Disable copy button while bot is thinking
+    const thinkingMessageElement = appendMessage("...", 'bot');
+
+    try {
+        // Create a custom fetch function to modify the request
+        const fetchWithCustomHeaders = async (url, options = {}) => {
+            const response = await fetch(url, {
+                ...options,
+                headers: {
+                    ...options.headers,
+                    'X-Custom-Source': 'TUT-EC-Portal',
+                    'User-Agent': 'TUT-EC-Helper/1.0'
+                }
+            });
+            return response;
+        };
+
+        // Initialize the model with the custom fetch function
+        const model = genAI.getGenerativeModel({ 
+            model: "gemini-2.5-flash",
+            fetch: fetchWithCustomHeaders
+        });
+        
+        // Make the API call
+        const result = await model.generateContent(userMessage);
+        
+        const botResponse = await result.response.text();
+        
+        // Pass 'true' to indicate this is a bot response for storing/enabling copy
+        updateMessage(thinkingMessageElement, botResponse, true);
+
+    } catch (error) {
+        console.error("Error communicating with Gemini:", error);
+        updateMessage(thinkingMessageElement, "Sorry, I'm having trouble connecting right now. Please try again later.");
+    } finally {
+        userInput.disabled = false;
+        sendButton.disabled = false;
+        userInput.focus();
+    }
+}
+
+
+// Event Listeners
+sendButton.addEventListener('click', sendMessage);
+
+userInput.addEventListener('keypress', (event) => {
+    if (event.key === 'Enter') {
+        sendMessage();
+    }
+});
+
+// NEW: Add event listener for the new copy button
+copyLastMessageButton.addEventListener('click', () => {
+    // Pass the stored lastBotMessageText and the copy button element itself
+    copyText(lastBotMessageText, copyLastMessageButton);
+});
+
+// Initial greeting and disable copy button until a response exists
+window.onload = () => {
+    appendMessage("Hello! How can I help you today?", 'bot');
+    copyLastMessageButton.disabled = true; // Disable copy button on load
+};
+    </script>
+</HTML>
 
 
